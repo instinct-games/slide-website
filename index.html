@@ -92,51 +92,11 @@
         gap: clamp(30px, 6vw, 78px);
         align-items: center;
         padding-top: 92px;
-        padding-bottom: 28px;
+        padding-bottom: 34px;
       }
 
-      .light-gap {
-        height: clamp(96px, 14svh, 170px);
-        display: flex;
-        align-items: flex-start;
-      }
-
-      .light-rail {
-        position: sticky;
-        top: 78px;
-        width: 100%;
-        height: 54px;
-        display: grid;
-        grid-template-columns: repeat(9, minmax(0, 1fr));
-        gap: 10px;
-        align-items: center;
-        padding: 0 2px;
-      }
-
-      .light-rail span {
-        display: block;
-        height: 4px;
-        border-radius: 999px;
-        background: rgba(247, 243, 236, 0.18);
-      }
-
-      .light-rail span:nth-child(1) { background: rgba(255, 75, 85, 0.58); box-shadow: 0 0 18px rgba(255, 75, 85, 0.20); }
-      .light-rail span:nth-child(2) { background: rgba(255, 192, 77, 0.50); box-shadow: 0 0 18px rgba(255, 192, 77, 0.16); }
-      .light-rail span:nth-child(3) { background: rgba(99, 224, 143, 0.50); box-shadow: 0 0 18px rgba(99, 224, 143, 0.16); }
-      .light-rail span:nth-child(4) { background: rgba(82, 216, 255, 0.48); box-shadow: 0 0 18px rgba(82, 216, 255, 0.16); }
-      .light-rail span:nth-child(5) { background: rgba(247, 243, 236, 0.62); box-shadow: 0 0 18px rgba(247, 243, 236, 0.16); }
-      .light-rail span:nth-child(6) { background: rgba(107, 141, 255, 0.50); box-shadow: 0 0 18px rgba(107, 141, 255, 0.16); }
-      .light-rail span:nth-child(7) { background: rgba(189, 116, 255, 0.50); box-shadow: 0 0 18px rgba(189, 116, 255, 0.16); }
-      .light-rail span:nth-child(8) { background: rgba(185, 176, 164, 0.42); box-shadow: 0 0 18px rgba(185, 176, 164, 0.12); }
-      .light-rail span:nth-child(9) { background: rgba(255, 75, 85, 0.44); box-shadow: 0 0 18px rgba(255, 75, 85, 0.14); }
-
-      .eyebrow {
-        margin: 0 0 18px;
-        color: var(--muted);
-        font-size: 13px;
-        font-weight: 680;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+      #screens {
+        padding-top: 34px;
       }
 
       h1,
@@ -152,6 +112,20 @@
         font-weight: 720;
         line-height: 0.86;
         letter-spacing: 0;
+      }
+
+      h1 span {
+        display: block;
+      }
+
+      .hero-tagline {
+        margin-top: 10px;
+        color: transparent;
+        background: linear-gradient(90deg, var(--red), var(--amber), var(--green), var(--cyan), var(--blue), var(--violet));
+        background-clip: text;
+        -webkit-background-clip: text;
+        font-size: clamp(36px, 6.7vw, 76px);
+        line-height: 0.95;
       }
 
       h2 {
@@ -377,32 +351,21 @@
 
         .hero {
           padding-top: 44px;
-          padding-bottom: 20px;
+          padding-bottom: 28px;
           gap: 30px;
         }
 
-        .light-gap {
-          height: 96px;
-        }
-
-        .light-rail {
-          top: 104px;
-          height: 44px;
-          gap: 6px;
-        }
-
-        .light-rail span {
-          height: 3px;
-        }
-
-        .eyebrow {
-          margin-bottom: 14px;
-          font-size: 12px;
+        #screens {
+          padding-top: 24px;
         }
 
         h1 {
           margin-bottom: 16px;
           font-size: clamp(58px, 22vw, 92px);
+        }
+
+        .hero-tagline {
+          font-size: clamp(30px, 11vw, 48px);
         }
 
         h2 {
@@ -488,8 +451,10 @@
     <main id="top">
       <section class="hero">
         <div>
-          <p class="eyebrow">Hear. See. Play.</p>
-          <h1>SLIDE</h1>
+          <h1>
+            <span>SLIDE</span>
+            <span class="hero-tagline">color. sound.</span>
+          </h1>
           <p>SLIDE is a musical instrument that listens.</p>
           <p>It transforms live sound into a visual map of music, allowing you to hear, see and interact with harmony in real time.</p>
           <div class="actions">
@@ -506,68 +471,6 @@
             allowfullscreen>
           </iframe>
         </div>
-      </section>
-
-      <div class="light-gap" aria-hidden="true">
-        <div class="light-rail">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-
-      <section id="map">
-        <h2>A Visual Map of Music</h2>
-        <p>At the heart of SLIDE is the Colour Wheel.</p>
-        <p>Every note occupies its own position on the wheel, creating a consistent map of musical space. As music changes, colours move and combine to reveal harmonic patterns that are often difficult to recognise by ear alone.</p>
-        <p>The wheel isn't simply a display. It's also a playable musical surface. Touch any colour to perform notes, build harmonies and experiment with musical ideas. Listening and playing become part of the same experience.</p>
-        <p>SLIDE lets you experience music as both sound and structure.</p>
-        <div class="cards">
-          <article class="card">
-            <h3>Wheel</h3>
-            <p>A circular musical surface for pitch, harmony, interval movement, and colour.</p>
-          </article>
-          <article class="card">
-            <h3>Field</h3>
-            <p>A wide harmonic map designed for fast visual scanning and performance.</p>
-          </article>
-          <article class="card">
-            <h3>Pads + Rings</h3>
-            <p>Use pads for melody and rings for chords, capturing musical moments into simple touch layouts.</p>
-          </article>
-          <article class="card">
-            <h3>Freeze</h3>
-            <p>Hold a moment in sound, then return to it while playing or listening.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="learn">
-        <h2>Learn Through Discovery</h2>
-        <p>SLIDE helps make music easier to understand because you can see what you are hearing.</p>
-        <p>Watch melodies travel across the wheel. See chords form and dissolve. Discover how keys relate to one another. Explore scales, intervals and harmony while listening to your favourite music.</p>
-        <p>Rather than replacing traditional music theory, SLIDE gives it a visual form that can be explored naturally through curiosity and play.</p>
-        <p>Whether you're a complete beginner or an experienced musician, it offers a new perspective on how music is constructed.</p>
-      </section>
-
-      <section id="play">
-        <h2>Play Along With Any Music</h2>
-        <p>SLIDE listens through your device's microphone, so it works with almost any sound source.</p>
-        <p>Play along with streaming services, YouTube videos, vinyl records, live performances, acoustic instruments or your own voice. No special setup is required.</p>
-        <p>Because it responds in real time, every performance becomes something you can both hear and see.</p>
-      </section>
-
-      <section id="create">
-        <h2>Create Music</h2>
-        <p>SLIDE isn't only for listening.</p>
-        <p>Use the Colour Wheel, keyboard and other musical surfaces to experiment with harmony, discover new chord ideas and develop melodies. Capture musical moments visually, explore alternative voicings and find inspiration by interacting directly with colour.</p>
-        <p>Many musicians find that seeing harmony opens creative pathways that are difficult to discover through notation alone.</p>
       </section>
 
       <section id="screens">
@@ -621,6 +524,54 @@
             </figure>
           </div>
         </div>
+      </section>
+
+      <section id="map">
+        <h2>A Visual Map of Music</h2>
+        <p>At the heart of SLIDE is the Colour Wheel.</p>
+        <p>Every note occupies its own position on the wheel, creating a consistent map of musical space. As music changes, colours move and combine to reveal harmonic patterns that are often difficult to recognise by ear alone.</p>
+        <p>The wheel isn't simply a display. It's also a playable musical surface. Touch any colour to perform notes, build harmonies and experiment with musical ideas. Listening and playing become part of the same experience.</p>
+        <p>SLIDE lets you experience music as both sound and structure.</p>
+        <div class="cards">
+          <article class="card">
+            <h3>Wheel</h3>
+            <p>A circular musical surface for pitch, harmony, interval movement, and colour.</p>
+          </article>
+          <article class="card">
+            <h3>Field</h3>
+            <p>A wide harmonic map designed for fast visual scanning and performance.</p>
+          </article>
+          <article class="card">
+            <h3>Pads + Rings</h3>
+            <p>Use pads for melody and rings for chords, capturing musical moments into simple touch layouts.</p>
+          </article>
+          <article class="card">
+            <h3>Freeze</h3>
+            <p>Hold a moment in sound, then return to it while playing or listening.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="learn">
+        <h2>Learn Through Discovery</h2>
+        <p>SLIDE helps make music easier to understand because you can see what you are hearing.</p>
+        <p>Watch melodies travel across the wheel. See chords form and dissolve. Discover how keys relate to one another. Explore scales, intervals and harmony while listening to your favourite music.</p>
+        <p>Rather than replacing traditional music theory, SLIDE gives it a visual form that can be explored naturally through curiosity and play.</p>
+        <p>Whether you're a complete beginner or an experienced musician, it offers a new perspective on how music is constructed.</p>
+      </section>
+
+      <section id="play">
+        <h2>Play Along With Any Music</h2>
+        <p>SLIDE listens through your device's microphone, so it works with almost any sound source.</p>
+        <p>Play along with streaming services, YouTube videos, vinyl records, live performances, acoustic instruments or your own voice. No special setup is required.</p>
+        <p>Because it responds in real time, every performance becomes something you can both hear and see.</p>
+      </section>
+
+      <section id="create">
+        <h2>Create Music</h2>
+        <p>SLIDE isn't only for listening.</p>
+        <p>Use the Colour Wheel, keyboard and other musical surfaces to experiment with harmony, discover new chord ideas and develop melodies. Capture musical moments visually, explore alternative voicings and find inspiration by interacting directly with colour.</p>
+        <p>Many musicians find that seeing harmony opens creative pathways that are difficult to discover through notation alone.</p>
       </section>
 
       <section id="companion">
