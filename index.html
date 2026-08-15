@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SLIDE</title>
+    <meta name="description" content="SLIDE is a musical instrument that listens, transforming live sound into a visual map you can hear, see, and play.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #f7f3ec;
+        --muted: #b9b0a4;
+        --paper: #10100e;
+        --panel: #191816;
+        --surface: rgba(255, 255, 255, 0.045);
+        --red: #ff4b55;
+        --amber: #ffc04d;
+        --green: #63e08f;
+        --cyan: #52d8ff;
+        --blue: #6b8dff;
+        --violet: #bd74ff;
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+      }
+
+      a { color: inherit; }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 16px clamp(18px, 4vw, 54px);
+        background: rgba(16, 16, 14, 0.84);
+        backdrop-filter: blur(18px);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        font-weight: 720;
+      }
+
+      .mark {
+        width: 36px;
+        aspect-ratio: 1;
+        border-radius: 4.5px;
+        background: transparent;
+        outline: 1.6px solid rgba(255, 255, 255, 0.30);
+      }
+
+      nav {
+        display: flex;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 14px;
+        overflow-x: auto;
+      }
+
+      nav a {
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      main {
+        width: min(1060px, calc(100% - 36px));
+        margin: 0 auto;
+      }
+
+      section {
+        padding: 72px 0;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(320px, 1fr);
+        gap: clamp(30px, 6vw, 78px);
+        align-items: center;
+        padding-top: 92px;
+        padding-bottom: 28px;
+      }
+
+      .light-gap {
+        height: clamp(96px, 14svh, 170px);
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .light-rail {
+        position: sticky;
+        top: 78px;
+        width: 100%;
+        height: 54px;
+        display: grid;
+        grid-template-columns: repeat(9, minmax(0, 1fr));
+        gap: 10px;
+        align-items: center;
+        padding: 0 2px;
+      }
+
+      .light-rail span {
+        display: block;
+        height: 4px;
+        border-radius: 999px;
+        background: rgba(247, 243, 236, 0.18);
+      }
+
+      .light-rail span:nth-child(1) { background: rgba(255, 75, 85, 0.58); box-shadow: 0 0 18px rgba(255, 75, 85, 0.20); }
+      .light-rail span:nth-child(2) { background: rgba(255, 192, 77, 0.50); box-shadow: 0 0 18px rgba(255, 192, 77, 0.16); }
+      .light-rail span:nth-child(3) { background: rgba(99, 224, 143, 0.50); box-shadow: 0 0 18px rgba(99, 224, 143, 0.16); }
+      .light-rail span:nth-child(4) { background: rgba(82, 216, 255, 0.48); box-shadow: 0 0 18px rgba(82, 216, 255, 0.16); }
+      .light-rail span:nth-child(5) { background: rgba(247, 243, 236, 0.62); box-shadow: 0 0 18px rgba(247, 243, 236, 0.16); }
+      .light-rail span:nth-child(6) { background: rgba(107, 141, 255, 0.50); box-shadow: 0 0 18px rgba(107, 141, 255, 0.16); }
+      .light-rail span:nth-child(7) { background: rgba(189, 116, 255, 0.50); box-shadow: 0 0 18px rgba(189, 116, 255, 0.16); }
+      .light-rail span:nth-child(8) { background: rgba(185, 176, 164, 0.42); box-shadow: 0 0 18px rgba(185, 176, 164, 0.12); }
+      .light-rail span:nth-child(9) { background: rgba(255, 75, 85, 0.44); box-shadow: 0 0 18px rgba(255, 75, 85, 0.14); }
+
+      .eyebrow {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 680;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 18px;
+        font-size: clamp(64px, 12vw, 136px);
+        font-weight: 720;
+        line-height: 0.86;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        margin-bottom: 18px;
+        font-size: clamp(34px, 6vw, 72px);
+        font-weight: 720;
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      h3 {
+        margin-bottom: 8px;
+        font-size: 22px;
+        font-weight: 680;
+      }
+
+      p {
+        max-width: 760px;
+        color: var(--muted);
+        font-size: clamp(18px, 2vw, 22px);
+        line-height: 1.45;
+      }
+
+      .hero p {
+        color: #ddd6cc;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 0 18px;
+        text-decoration: none;
+        font-weight: 680;
+      }
+
+      .button.primary {
+        color: var(--paper);
+        background: var(--ink);
+      }
+
+      .button.secondary {
+        background: var(--surface);
+      }
+
+      .video-card {
+        position: relative;
+        min-height: 340px;
+        overflow: hidden;
+        border-radius: 28px;
+        background: var(--panel);
+      }
+
+      .video-card iframe,
+      .video-poster {
+        width: 100%;
+        height: 100%;
+        min-height: 340px;
+        display: block;
+      }
+
+      .video-card iframe {
+        border: 0;
+      }
+
+      .video-poster {
+        position: relative;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        background: #111 center / cover no-repeat url("https://img.youtube.com/vi/GhxM-rKEU08/maxresdefault.jpg");
+      }
+
+      .video-poster::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.18);
+      }
+
+      .play-mark {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        width: 74px;
+        height: 52px;
+        transform: translate(-50%, -50%);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.88);
+      }
+
+      .play-mark::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: 4px;
+        transform: translate(-50%, -50%);
+        border-left: 18px solid #111;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+      }
+
+      .youtube-fallback {
+        position: absolute;
+        right: 16px;
+        bottom: 14px;
+        z-index: 1;
+        color: rgba(247, 243, 236, 0.86);
+        font-size: 14px;
+        font-weight: 680;
+        text-decoration: none;
+        text-shadow: 0 1px 12px rgba(0, 0, 0, 0.75);
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-top: 30px;
+      }
+
+      .card,
+      details {
+        padding: 20px;
+        border-radius: 20px;
+        background: var(--surface);
+      }
+
+      .card p,
+      details p {
+        margin-bottom: 0;
+        font-size: 16px;
+      }
+
+      .screens {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 30px;
+      }
+
+      .screen {
+        margin: 0;
+        overflow: hidden;
+        border-radius: 20px;
+        background: var(--panel);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .screen.featured {
+        grid-column: 1 / -1;
+      }
+
+      .screen img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-top: 30px;
+      }
+
+      .feature-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin: 30px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .feature-list li {
+        padding: 16px 18px;
+        border-radius: 16px;
+        background: var(--surface);
+        color: var(--muted);
+      }
+
+      .faq {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 30px;
+      }
+
+      summary {
+        cursor: pointer;
+        font-weight: 680;
+      }
+
+      footer {
+        width: min(1060px, calc(100% - 36px));
+        margin: 0 auto;
+        padding: 36px 0 54px;
+        color: var(--muted);
+      }
+
+      @media (max-width: 860px) {
+        .site-header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        nav {
+          width: 100%;
+        }
+
+        .hero,
+        .cards,
+        .steps,
+        .faq {
+          grid-template-columns: 1fr;
+        }
+
+        .screens,
+        .feature-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 560px) {
+        .site-header {
+          gap: 12px;
+          padding: 14px 18px 10px;
+        }
+
+        .brand {
+          gap: 10px;
+        }
+
+        .mark {
+          width: 32px;
+        }
+
+        nav {
+          gap: 14px;
+          font-size: 13px;
+          padding-bottom: 6px;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        main,
+        footer {
+          width: min(100% - 28px, 1060px);
+        }
+
+        section {
+          padding: 46px 0;
+        }
+
+        .hero {
+          padding-top: 44px;
+          padding-bottom: 20px;
+          gap: 30px;
+        }
+
+        .light-gap {
+          height: 96px;
+        }
+
+        .light-rail {
+          top: 104px;
+          height: 44px;
+          gap: 6px;
+        }
+
+        .light-rail span {
+          height: 3px;
+        }
+
+        .eyebrow {
+          margin-bottom: 14px;
+          font-size: 12px;
+        }
+
+        h1 {
+          margin-bottom: 16px;
+          font-size: clamp(58px, 22vw, 92px);
+        }
+
+        h2 {
+          margin-bottom: 14px;
+          font-size: clamp(34px, 13vw, 54px);
+        }
+
+        h3 {
+          font-size: 19px;
+        }
+
+        p {
+          font-size: 17px;
+          line-height: 1.5;
+        }
+
+        .actions {
+          gap: 10px;
+          margin-top: 24px;
+        }
+
+        .button {
+          min-height: 44px;
+          padding: 0 16px;
+          font-size: 14px;
+        }
+
+        .video-card {
+          min-height: 240px;
+          border-radius: 22px;
+        }
+
+        .video-card iframe {
+          min-height: 240px;
+        }
+
+        .video-poster {
+          min-height: 240px;
+        }
+
+        .cards,
+        .steps,
+        .feature-list,
+        .faq,
+        .screens {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          margin-top: 22px;
+        }
+
+        .card,
+        details,
+        .feature-list li {
+          border-radius: 16px;
+          padding: 16px;
+        }
+
+        .screen { border-radius: 16px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="SLIDE home">
+        <span class="mark" aria-hidden="true"></span>
+        <span>SLIDE</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#map">Map</a>
+        <a href="#learn">Learn</a>
+        <a href="#play">Play Along</a>
+        <a href="#create">Create</a>
+        <a href="#screens">Screens</a>
+        <a href="#explore">Explore</a>
+        <a href="#faq">FAQ</a>
+        <a href="#privacy">Privacy</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Hear. See. Play.</p>
+          <h1>SLIDE</h1>
+          <p>SLIDE is a musical instrument that listens.</p>
+          <p>It transforms live sound into a visual map of music, allowing you to hear, see and interact with harmony in real time.</p>
+          <div class="actions">
+            <a class="button primary" href="#video">Watch Video</a>
+            <a class="button secondary" href="#screens">View Screens</a>
+          </div>
+        </div>
+        <div class="video-card" id="video" aria-label="Video" data-video-id="GhxM-rKEU08">
+          <button class="video-poster" type="button" aria-label="Play SLIDE video">
+            <span class="play-mark" aria-hidden="true"></span>
+          </button>
+          <a class="youtube-fallback" href="https://www.youtube.com/watch?v=GhxM-rKEU08" target="_blank" rel="noreferrer">Open on YouTube</a>
+        </div>
+      </section>
+
+      <div class="light-gap" aria-hidden="true">
+        <div class="light-rail">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <section id="map">
+        <h2>A Visual Map of Music</h2>
+        <p>At the heart of SLIDE is the Colour Wheel.</p>
+        <p>Every note occupies its own position on the wheel, creating a consistent map of musical space. As music changes, colours move and combine to reveal harmonic patterns that are often difficult to recognise by ear alone.</p>
+        <p>The wheel isn't simply a display. It's also a playable musical surface. Touch any colour to perform notes, build harmonies and experiment with musical ideas. Listening and playing become part of the same experience.</p>
+        <p>SLIDE lets you experience music as both sound and structure.</p>
+        <div class="cards">
+          <article class="card">
+            <h3>Wheel</h3>
+            <p>A circular musical surface for pitch, harmony, interval movement, and colour.</p>
+          </article>
+          <article class="card">
+            <h3>Field</h3>
+            <p>A wide harmonic map designed for fast visual scanning and performance.</p>
+          </article>
+          <article class="card">
+            <h3>Pads + Rings</h3>
+            <p>Use pads for melody and rings for chords, capturing musical moments into simple touch layouts.</p>
+          </article>
+          <article class="card">
+            <h3>Freeze</h3>
+            <p>Hold a moment in sound, then return to it while playing or listening.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="learn">
+        <h2>Learn Through Discovery</h2>
+        <p>SLIDE helps make music easier to understand because you can see what you are hearing.</p>
+        <p>Watch melodies travel across the wheel. See chords form and dissolve. Discover how keys relate to one another. Explore scales, intervals and harmony while listening to your favourite music.</p>
+        <p>Rather than replacing traditional music theory, SLIDE gives it a visual form that can be explored naturally through curiosity and play.</p>
+        <p>Whether you're a complete beginner or an experienced musician, it offers a new perspective on how music is constructed.</p>
+      </section>
+
+      <section id="play">
+        <h2>Play Along With Any Music</h2>
+        <p>SLIDE listens through your device's microphone, so it works with almost any sound source.</p>
+        <p>Play along with streaming services, YouTube videos, vinyl records, live performances, acoustic instruments or your own voice. No special setup is required.</p>
+        <p>Because it responds in real time, every performance becomes something you can both hear and see.</p>
+      </section>
+
+      <section id="create">
+        <h2>Create Music</h2>
+        <p>SLIDE isn't only for listening.</p>
+        <p>Use the Colour Wheel, keyboard and other musical surfaces to experiment with harmony, discover new chord ideas and develop melodies. Capture musical moments visually, explore alternative voicings and find inspiration by interacting directly with colour.</p>
+        <p>Many musicians find that seeing harmony opens creative pathways that are difficult to discover through notation alone.</p>
+      </section>
+
+      <section id="screens">
+        <h2>Screens</h2>
+        <p>iPad layouts for wheel, field, keys, fretboard, and paper staves.</p>
+        <div class="screens" aria-label="iPad screenshots">
+          <figure class="screen featured">
+            <img src="assets/ipad-wheel-staves.png" alt="SLIDE on iPad with wheel, fretboard, and paper stave window" loading="lazy">
+          </figure>
+          <figure class="screen">
+            <img src="assets/ipad-wheel.png" alt="SLIDE iPad wheel surface with glowing note wedges" loading="lazy">
+          </figure>
+          <figure class="screen">
+            <img src="assets/ipad-wheel-keys.png" alt="SLIDE iPad wheel with piano keyboard panel open" loading="lazy">
+          </figure>
+          <figure class="screen">
+            <img src="assets/ipad-wheel-fretboard.png" alt="SLIDE iPad wheel with fretboard panel open" loading="lazy">
+          </figure>
+          <figure class="screen">
+            <img src="assets/ipad-field.png" alt="SLIDE iPad field surface with glowing harmonic cells" loading="lazy">
+          </figure>
+        </div>
+      </section>
+
+      <section id="companion">
+        <h2>A Creative Companion</h2>
+        <p>SLIDE works naturally alongside your existing workflow.</p>
+        <p>Keep it open next to your DAW while composing, recording or mixing. Let it reveal harmonic movement as you work, explore arrangements visually or use it as a live reference while performing.</p>
+        <p>It works with any MIDI input, and it can also act as a MIDI instrument itself, sending notes from your interactions in SLIDE to a DAW or external instrument.</p>
+        <p>Because it listens to any audio and speaks MIDI, it fits naturally into almost any creative environment without needing complicated routing or preparation.</p>
+      </section>
+
+      <section id="explore">
+        <h2>Built For Exploration</h2>
+        <p>SLIDE includes multiple interactive ways to experience music, including the Colour Wheel, keyboard, guitar fretboard, stave notation and performance views.</p>
+        <p>Every view presents the same musical information from a different perspective, allowing you to move effortlessly between hearing, seeing and playing.</p>
+        <p>There are no lessons to complete and no right way to use it.</p>
+        <ul class="feature-list">
+          <li>Some people use SLIDE to understand music.</li>
+          <li>Some use it to practise.</li>
+          <li>Some use it to compose.</li>
+          <li>Some simply enjoy watching music come alive in colour.</li>
+        </ul>
+        <p>However you choose to use it, SLIDE invites you to experience music in a completely new way.</p>
+      </section>
+
+      <section>
+        <h2>Hear. See. Play.</h2>
+        <p>Music has always been something we hear. SLIDE lets you hear it, see it and play with it at the same time.</p>
+      </section>
+
+      <section id="faq">
+        <h2>FAQ</h2>
+        <div class="faq">
+          <details open>
+            <summary>Does SLIDE need the microphone?</summary>
+            <p>No. SLIDE can also be played entirely by touch or MIDI.</p>
+          </details>
+          <details>
+            <summary>Is audio recorded?</summary>
+            <p>No. Audio is processed live on device.</p>
+          </details>
+          <details>
+            <summary>Can I use a MIDI keyboard?</summary>
+            <p>Yes. SLIDE supports external MIDI controllers.</p>
+          </details>
+        </div>
+      </section>
+
+      <section id="privacy">
+        <h2>Privacy</h2>
+        <p>SLIDE only uses microphone input when enabled by the user. Audio is processed live on device to create visual and musical responses.</p>
+        <p>SLIDE does not require an account and does not sell personal data.</p>
+      </section>
+    </main>
+
+    <footer>
+      SLIDE
+    </footer>
+    <script>
+      const videoCard = document.querySelector("[data-video-id]");
+      const videoPoster = document.querySelector(".video-poster");
+
+      if (videoCard && videoPoster) {
+        videoPoster.addEventListener("click", () => {
+          const id = videoCard.dataset.videoId;
+          const watchUrl = `https://www.youtube.com/watch?v=${id}`;
+          const isPreview = window.location.protocol === "file:" || ["", "localhost", "127.0.0.1"].includes(window.location.hostname);
+
+          if (isPreview) {
+            window.open(watchUrl, "_blank", "noopener");
+            return;
+          }
+
+          const iframe = document.createElement("iframe");
+          iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
+          iframe.title = "SLIDE video";
+          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          iframe.referrerPolicy = "strict-origin-when-cross-origin";
+          iframe.allowFullscreen = true;
+          videoCard.replaceChildren(iframe);
+        });
+      }
+    </script>
+  </body>
+</html>
