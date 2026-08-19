@@ -160,33 +160,6 @@
         color: #ddd6cc;
       }
 
-      .actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 28px;
-      }
-
-      .button {
-        display: inline-flex;
-        min-height: 46px;
-        align-items: center;
-        justify-content: center;
-        border-radius: 999px;
-        padding: 0 18px;
-        text-decoration: none;
-        font-weight: 680;
-      }
-
-      .button.primary {
-        color: var(--paper);
-        background: var(--ink);
-      }
-
-      .button.secondary {
-        background: var(--surface);
-      }
-
       .video-card {
         position: relative;
         min-height: 340px;
@@ -252,14 +225,14 @@
       }
 
       .card,
-      details {
+      .faq-item {
         padding: 20px;
         border-radius: 20px;
         background: var(--surface);
       }
 
       .card p,
-      details p {
+      .faq-item p {
         margin-bottom: 0;
         font-size: 16px;
       }
@@ -324,16 +297,15 @@
         color: var(--muted);
       }
 
+      .section-close {
+        margin-top: 28px;
+      }
+
       .faq {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 14px;
         margin-top: 30px;
-      }
-
-      summary {
-        cursor: pointer;
-        font-weight: 680;
       }
 
       footer {
@@ -428,17 +400,6 @@
           line-height: 1.5;
         }
 
-        .actions {
-          gap: 10px;
-          margin-top: 24px;
-        }
-
-        .button {
-          min-height: 44px;
-          padding: 0 16px;
-          font-size: 14px;
-        }
-
         .video-card {
           min-height: 240px;
           border-radius: 22px;
@@ -466,7 +427,7 @@
         }
 
         .card,
-        details,
+        .faq-item,
         .feature-list li {
           border-radius: 16px;
           padding: 16px;
@@ -485,11 +446,13 @@
       <nav aria-label="Main navigation">
         <a href="#screens">Screens</a>
         <a href="#map">Map</a>
+        <a href="#accessibility">Accessibility</a>
         <a href="#learn">Learn</a>
         <a href="#play">Play Along</a>
         <a href="#create">Create</a>
         <a href="#companion">Companion</a>
         <a href="#explore">Explore</a>
+        <a href="#about">About</a>
         <a href="#faq">FAQ</a>
         <a href="#privacy">Privacy</a>
       </nav>
@@ -504,13 +467,9 @@
           </h1>
           <p>SLIDE is a musical instrument that listens.</p>
           <p>It transforms live sound into a visual map of music, allowing you to hear, see and interact with harmony in real time.</p>
-          <div class="actions">
-            <a class="button primary" href="#video">Watch Video</a>
-            <a class="button secondary" href="#screens">View Screens</a>
-          </div>
         </div>
         <div>
-          <div class="video-card" id="video" aria-label="Video">
+          <div class="video-card" aria-label="Video">
             <iframe
               src="https://www.youtube.com/embed/FeSMybJS5qY?rel=0&playsinline=1"
               title="SLIDE video"
@@ -612,6 +571,13 @@
         </div>
       </section>
 
+      <section id="accessibility">
+        <h2>Visual Access To Music</h2>
+        <p>SLIDE has potential as an accessibility resource for people with hearing loss, giving music a visible form in real time.</p>
+        <p>Because it listens through the device microphone, SLIDE can be taken into live settings with no special setup. Open the app, place the device near the music, and the sound becomes colour, movement and structure on screen.</p>
+        <p>That makes it useful for classrooms, performances, rehearsals, community spaces and projection setups where music can be shared visually as well as heard.</p>
+      </section>
+
       <section id="learn">
         <h2>Learn Through Discovery</h2>
         <p>SLIDE helps make music easier to understand because you can see what you are hearing.</p>
@@ -653,24 +619,40 @@
           <li>Some use it to compose.</li>
           <li>Some simply enjoy watching music come alive in colour.</li>
         </ul>
-        <p>However you choose to use it, SLIDE invites you to experience music in a completely new way.</p>
+        <p class="section-close">However you choose to use it, SLIDE invites you to experience music in a completely new way.</p>
+      </section>
+
+      <section id="about">
+        <h2>About</h2>
+        <p>Hello. I'm Ben Wakelin, a teacher with a passion for music and art.</p>
+        <p>SLIDE grew from a simple question I kept returning to: what if music theory could be felt visually, as a space of colour, movement and touch? For me, the idea sits at the meeting point between learning, play, sound and image.</p>
+        <p>I used Codex to help develop SLIDE and this website, turning ideas into working code while keeping the project rooted in curiosity, teaching and creative exploration.</p>
+        <p>The connection between music and colour has a long, fascinating history. A useful doorway into that way of thinking is <a href="https://youtu.be/MKaPet3T6Ws?si=9vsY1BuCD3NqqL4o" target="_blank" rel="noopener">this Lighting Mentor conversation</a> between Jeremy Vickery and me about colour and music theory.</p>
       </section>
 
       <section id="faq">
         <h2>FAQ</h2>
         <div class="faq">
-          <details open>
-            <summary>Does SLIDE need the microphone?</summary>
+          <article class="faq-item">
+            <h3>Does SLIDE need the microphone?</h3>
             <p>No. SLIDE can also be played entirely by touch or MIDI.</p>
-          </details>
-          <details>
-            <summary>Is audio recorded?</summary>
+          </article>
+          <article class="faq-item">
+            <h3>Is audio recorded?</h3>
             <p>No. Audio is processed live on device.</p>
-          </details>
-          <details>
-            <summary>Can I use a MIDI keyboard?</summary>
+          </article>
+          <article class="faq-item">
+            <h3>Can I use a MIDI keyboard?</h3>
             <p>Yes. SLIDE supports external MIDI controllers.</p>
-          </details>
+          </article>
+          <article class="faq-item">
+            <h3>Can SLIDE use a second display?</h3>
+            <p>Yes. SLIDE can be used with a second display, making it ideal for projection in live settings, classrooms, installations and performances.</p>
+          </article>
+          <article class="faq-item">
+            <h3>Can I use an external microphone?</h3>
+            <p>Yes. SLIDE can work with external microphones supported by your device, which can help capture clearer audio in rehearsals, lessons and live environments.</p>
+          </article>
         </div>
       </section>
 
