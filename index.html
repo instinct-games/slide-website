@@ -91,7 +91,7 @@
         display: grid;
         grid-template-columns: minmax(0, 0.8fr) minmax(320px, 1fr);
         gap: clamp(30px, 6vw, 78px);
-        align-items: stretch;
+        align-items: start;
         padding-top: 92px;
         padding-bottom: 34px;
       }
@@ -176,19 +176,10 @@
         border: 0;
       }
 
-      .hero-media {
-        display: flex;
-        flex-direction: column;
-        min-height: 100%;
-      }
-
       .store-actions {
         display: flex;
-        flex: 1;
-        align-items: center;
-        justify-content: center;
-        min-height: 170px;
-        padding-top: 28px;
+        justify-content: flex-start;
+        margin-top: 26px;
       }
 
       .app-store-badge {
@@ -342,20 +333,6 @@
           grid-template-columns: 1fr;
         }
 
-        .hero {
-          align-items: start;
-        }
-
-        .hero-media {
-          min-height: 0;
-        }
-
-        .store-actions {
-          flex: initial;
-          min-height: 0;
-          padding-top: 28px;
-        }
-
         .screens,
         .screens.iphone,
         .feature-list {
@@ -492,17 +469,6 @@
           </h1>
           <p>SLIDE is a musical instrument that listens.</p>
           <p>It transforms live sound into a visual map of music, allowing you to hear, see and interact with harmony in real time.</p>
-        </div>
-        <div class="hero-media">
-          <div class="video-card" aria-label="Video">
-            <iframe
-              src="https://www.youtube.com/embed/FeSMybJS5qY?rel=0&playsinline=1"
-              title="SLIDE video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen>
-            </iframe>
-          </div>
           <div class="store-actions">
             <a class="app-store-badge" href="https://apps.apple.com/app/slide-color-sound/id6770512275" aria-label="Download SLIDE color. sound. on the App Store">
               <svg viewBox="0 0 24 28" aria-hidden="true">
@@ -513,6 +479,17 @@
                 <span class="badge-title">App Store</span>
               </span>
             </a>
+          </div>
+        </div>
+        <div>
+          <div class="video-card" aria-label="Video">
+            <iframe
+              src="https://www.youtube.com/embed/FeSMybJS5qY?rel=0&playsinline=1"
+              title="SLIDE video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
           </div>
         </div>
       </section>
